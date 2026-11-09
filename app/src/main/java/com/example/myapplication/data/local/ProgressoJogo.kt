@@ -1,5 +1,5 @@
-package com.example.myapplication.data.local
-
-data class ProgressoJogo {
-
-}
+//package com.example.myapplication.data.local
+//
+//data class ProgressoJogo {
+//
+//}

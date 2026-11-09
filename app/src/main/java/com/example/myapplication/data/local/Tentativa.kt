@@ -1,4 +1,4 @@
-package com.example.myapplication.data.local
-
-data class Tentativa {
-}
+//package com.example.myapplication.data.local
+//
+//data class Tentativa {
+////}
