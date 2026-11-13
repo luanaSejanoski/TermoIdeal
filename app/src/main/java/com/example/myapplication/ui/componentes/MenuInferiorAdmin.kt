@@ -12,12 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.myapplication.R
 
 @Composable
-fun MenuInferiorAdmin(navController: NavHostController){
+fun MenuInferiorAdmin(navController: NavController){
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val rotaAtual = navBackStackEntry?.destination?.route
@@ -26,9 +27,9 @@ fun MenuInferiorAdmin(navController: NavHostController){
         containerColor = Color(0xFF51436D)
     ){
         NavigationBarItem(
-            selected = true,
+            selected = rotaAtual == Rotas.JOGO,
             onClick = {
-
+                    navController.navigate(Rotas.JOGO)
             },
             icon = {
                 Icon(
@@ -41,8 +42,10 @@ fun MenuInferiorAdmin(navController: NavHostController){
         )
 
         NavigationBarItem(
-            selected = false,
-            onClick = {},
+            selected = rotaAtual == Rotas.CADASTRAR_PALAVRA,
+            onClick = {
+                navController.navigate(Rotas.CADASTRAR_PALAVRA)
+            },
 
             icon = {
                 Icon(
@@ -55,8 +58,10 @@ fun MenuInferiorAdmin(navController: NavHostController){
         )
 
         NavigationBarItem(
-            selected = false,
-            onClick = {},
+            selected = rotaAtual == Rotas.RANKING,
+            onClick = {
+                navController.navigate(Rotas.RANKING)
+            },
 
             icon = {
                 Icon(

@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.R
@@ -47,13 +48,13 @@ import com.example.myapplication.ui.theme.MyApplicationTheme
 fun TelaRankingPreview() {
     val navController = rememberNavController()
 
-    TelaRanking(navController = navController)
+    TelaRanking(navController = navController, 0)
 }
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun TelaRanking(navController: NavHostController) {
+fun TelaRanking(navController: NavController, idUsuario: Int) {
 
     Scaffold(
         containerColor = Color(0xFF1F1D35),
@@ -126,10 +127,10 @@ fun TelaRanking(navController: NavHostController) {
                         ) {
 
                             Text(
-                                color = Color.White,
+                                color = if(usuario.id == 0) Color.Yellow else Color.White,
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Medium,
-                                text = usuario.nomeUsuario
+                                text =  usuario.nomeUsuario
                             )
 
                             Text(

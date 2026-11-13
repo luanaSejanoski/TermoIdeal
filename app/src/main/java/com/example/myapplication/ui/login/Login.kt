@@ -40,20 +40,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 import com.example.myapplication.R
+import com.example.myapplication.ui.componentes.Rotas
+import com.example.myapplication.ui.ranking.TelaRanking
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MyApplicationTheme {
-                TelaLogin()
-            }
-        }
-    }
+
+@Preview(showBackground = true)
+@Composable
+fun TelaRankingPreview() {
+    val navController = rememberNavController()
+
+    TelaLogin(navController = navController)
 }
 
 @Composable
@@ -80,10 +82,10 @@ fun gerarBloco(letra: Char, cor: Color){
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 
-fun TelaLogin(){
+fun TelaLogin(navController: NavController){
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.background(Color(0xFF1F1D35)),
@@ -117,19 +119,6 @@ fun TelaLogin(){
                             gerarBloco('L', Color(0xFF38355B))
 
                         }
-//
-//                        Row(
-//                            modifier = Modifier.width(300.dp)
-//                                .padding(25.dp),
-//                            horizontalArrangement = Arrangement.Center) {
-//                            Text(
-//                                color = Color.White,
-//                                fontSize = 15.sp,
-//                                fontWeight = FontWeight.Light,
-//                                textAlign = TextAlign.Center,
-//                                fontFamily = FontFamily.Monospace,
-//                                text = "Encontre a palavra ideal nesse desafio surreal!")
-//                        }
                     }
 
 
@@ -168,13 +157,14 @@ fun TelaLogin(){
                             colors = CardDefaults.cardColors(
                                 containerColor = Color(0xFF49B43F),
                                 contentColor = Color.White
-                            )
+                            ),
+                            onClick = {navController.navigate(Rotas.CADASTRAR_PALAVRA)}
                         ) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(horizontal = 15.dp),
-                                horizontalArrangement = Arrangement.spacedBy(15.dp),
+                                    .padding(horizontal = 13.dp),
+                                horizontalArrangement = Arrangement.spacedBy(10.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
@@ -185,7 +175,7 @@ fun TelaLogin(){
                                     tint = Color.White
                                 )
 
-                                Column() {
+                                Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         color = Color.White,
                                         fontSize = 17.sp,
@@ -202,7 +192,7 @@ fun TelaLogin(){
                                 }
 
                                 Icon(
-                                    modifier = Modifier.size(35.dp),
+                                    modifier = Modifier.size(32.dp),
                                     painter = painterResource(R.drawable.seta_direita),
                                     contentDescription = null,
                                     tint = Color.White
@@ -216,14 +206,15 @@ fun TelaLogin(){
                             shape = RoundedCornerShape(10.dp),
                             colors = CardDefaults.cardColors(
                                 containerColor = Color(0xFFF8B83C),
-                                contentColor = Color.White
-                            )
+                                contentColor = Color.White,
+                            ),
+                            onClick = { navController.navigate(Rotas.JOGO.replace("{idJogo}", "0")) }
                         ) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(horizontal = 15.dp),
-                                horizontalArrangement = Arrangement.spacedBy(15.dp),
+                                    .padding(horizontal = 13.dp),
+                                horizontalArrangement = Arrangement.spacedBy(10.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
@@ -234,7 +225,7 @@ fun TelaLogin(){
                                     tint = Color.White
                                 )
 
-                                Column() {
+                                Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         color = Color.White,
                                         fontSize = 17.sp,
@@ -251,10 +242,10 @@ fun TelaLogin(){
                                 }
 
                                 Icon(
-                                    modifier = Modifier.size(35.dp),
+                                    modifier = Modifier.size(32.dp),
                                     painter = painterResource(R.drawable.seta_direita),
                                     contentDescription = null,
-                                    tint = Color.White
+                                    tint = Color.White,
                                 )
                             }
 

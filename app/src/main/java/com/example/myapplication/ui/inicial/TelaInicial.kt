@@ -42,26 +42,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.R
+import com.example.myapplication.ui.componentes.Rotas
 import com.example.myapplication.ui.login.gerarBloco
+import com.example.myapplication.ui.ranking.TelaRanking
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MyApplicationTheme {
-               TelaInicial()
-            }
-        }
-    }
-}
+
 
 @Preview(showBackground = true)
 @Composable
+fun TelaRankingPreview() {
+    val navController = rememberNavController()
 
-fun TelaInicial(){
+    TelaInicial(navController = navController)
+}
+@Composable
+
+fun TelaInicial(navController: NavController){
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.background(Color(0xFF1F1D35))
@@ -132,7 +132,8 @@ fun TelaInicial(){
                         colors = CardDefaults.cardColors(
                             containerColor = Color(0xFFF8B83C),
                             contentColor = Color.White
-                        )
+                        ),
+                        onClick = {navController.navigate(Rotas.TELA_LOGIN)}
                     ){
 
                         Row(
