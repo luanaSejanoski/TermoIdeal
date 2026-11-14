@@ -6,9 +6,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,6 +20,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -107,12 +111,28 @@ fun TelaRanking(
                     .padding(top = 10.dp, bottom = 45.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = null,
+                    tint = Color(0xFFF8B83C),
+                    modifier = Modifier.size(20.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
                 Text(
+                    text = "Os melhores jogadores do Termo Ideal",
                     color = Color.White,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
-                    text = if(tipoUsuario == 1) "Veja a sua posição:" else
-                        "Classificação dos jogadores:"
+                    fontSize = 18.sp
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = null,
+                    tint = Color(0xFFF8B83C),
+                    modifier = Modifier.size(20.dp)
                 )
             }
 
@@ -126,10 +146,26 @@ fun TelaRanking(
                     key = { usuario -> usuario.id }
                 ) { usuario ->
 
+                    val posicao = uiState.usuarios.indexOf(usuario) + 1
+
+                    val corPosicao = when (posicao) {
+                        1 -> Color(0xFFFFD700)
+                        2 -> Color(0xFFC0C0C0)
+                        3 -> Color(0xFFCD7F32)
+                        else -> Color(0xFFBE9EFF)
+                    }
+
+                    val corBorda = if (posicao <= 3) corPosicao else Color.Transparent
+
                     Card(
                         modifier = Modifier.width(350.dp)
                             .height(70.dp)
-                            .padding(bottom = 5.dp),
+                            .padding(bottom = 5.dp)
+                            .border(
+                                width = 1.dp,
+                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color(0xFF2EFF72) else corBorda,
+                                shape = RoundedCornerShape(10.dp)
+                            ),
                         shape = RoundedCornerShape(10.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = Color(0xFF38355B),
@@ -145,15 +181,24 @@ fun TelaRanking(
                         ) {
 
                             Text(
-                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color.Yellow else Color.White,
+                                text = "${posicao}º",
+                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color(0xFF2EFF72) else corPosicao,
                                 fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+
+                            Text(
+                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color(
+                                    0xFF2EFF72
+                                ) else Color.White,
+                                fontSize = 15.sp,
                                 fontWeight = FontWeight.Medium,
                                 text =  usuario.nomeUsuario
                             )
 
                             Text(
-                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color.Yellow else Color.White,
-                                fontSize = 20.sp,
+                                color = if(tipoUsuario == 1 && usuario.id == idUsuario) Color(0xFF2EFF72) else Color(0xFFFFD700),
+                                fontSize = 15.sp,
                                 fontWeight = FontWeight.Medium,
                                 text = "${usuario.pontuacao} pts"
                             )
