@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -169,5 +170,21 @@ fun TelaInicial(navController: NavController){
 
             }
         }
+    }
+}
+
+@Composable
+fun TelaEmConstrucao(nome: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF1F1D35)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "$nome (em construção)",
+            color = Color.White,
+            fontSize = 20.sp
+        )
     }
 }

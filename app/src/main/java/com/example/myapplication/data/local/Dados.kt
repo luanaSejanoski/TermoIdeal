@@ -5,7 +5,7 @@ import com.example.myapplication.R
 
 object Dados {
     val usuarios = listOf(
-        Usuario(nomeUsuario = "Tio_do_Pave", pontuacao = 1250),
+        Usuario(nomeUsuario = "Jogador_Ideal", pontuacao = 1250),
         Usuario(nomeUsuario = "Sogra_Gamer", pontuacao = 980),
         Usuario(nomeUsuario = "Paozinho_Ninja", pontuacao = 1520),
         Usuario(nomeUsuario = "Fiscal_de_Filao", pontuacao = 1100),

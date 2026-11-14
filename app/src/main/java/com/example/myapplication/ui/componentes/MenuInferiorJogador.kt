@@ -34,7 +34,7 @@ fun MenuInferiorJogador(navController: NavController){
                     modifier = Modifier.size(40.dp),
                     painter = painterResource(R.drawable.icon_jogo_diario),
                     contentDescription = null,
-                    tint = Color(0xFF1F1D35)
+                    tint = Color.White
                 )
             }
         )
@@ -50,7 +50,7 @@ fun MenuInferiorJogador(navController: NavController){
                     modifier = Modifier.size(40.dp),
                     painter = painterResource(R.drawable.icon_jogar),
                     contentDescription = null,
-                    tint = Color(0xFF1F1D35)
+                    tint = Color.White
                 )
             }
         )
@@ -66,7 +66,7 @@ fun MenuInferiorJogador(navController: NavController){
                     modifier = Modifier.size(40.dp),
                     painter = painterResource(R.drawable.icon_ranking),
                     contentDescription = null,
-                    tint = Color(0xFF1F1D35)
+                    tint = Color.White
                 )
             }
         )

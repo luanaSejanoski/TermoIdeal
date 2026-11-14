@@ -1,4 +1,7 @@
 package com.example.myapplication.ui.ranking
 
-class RankingUiState {
-}
+import com.example.myapplication.data.local.Usuario
+
+data class RankingUiState (
+    val usuarios: List<Usuario> = emptyList()
+)

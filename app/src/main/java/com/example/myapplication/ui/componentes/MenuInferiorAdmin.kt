@@ -27,32 +27,32 @@ fun MenuInferiorAdmin(navController: NavController){
         containerColor = Color(0xFF51436D)
     ){
         NavigationBarItem(
-            selected = rotaAtual == Rotas.JOGO,
-            onClick = {
-                    navController.navigate(Rotas.JOGO)
-            },
-            icon = {
-                Icon(
-                    modifier = Modifier.size(40.dp),
-                    painter = painterResource(R.drawable.icon_jogo_diario),
-                    contentDescription = null,
-                    tint = Color(0xFF1F1D35)
-                )
-            }
-        )
-
-        NavigationBarItem(
             selected = rotaAtual == Rotas.CADASTRAR_PALAVRA,
             onClick = {
-                navController.navigate(Rotas.CADASTRAR_PALAVRA)
+                    navController.navigate(Rotas.CADASTRAR_PALAVRA)
             },
-
             icon = {
                 Icon(
                     modifier = Modifier.size(40.dp),
                     imageVector = Icons.Default.Add,
                     contentDescription = null,
-                    tint = Color(0xFF1F1D35)
+                    tint = Color.White
+                )
+            }
+        )
+
+        NavigationBarItem(
+            selected = rotaAtual == Rotas.JOGOS_PASSADOS,
+            onClick = {
+                navController.navigate(Rotas.JOGOS_PASSADOS)
+            },
+
+            icon = {
+                Icon(
+                    modifier = Modifier.size(40.dp),
+                    painter = painterResource(R.drawable.icon_jogar),
+                    contentDescription = null,
+                    tint = Color.White
                 )
             }
         )
@@ -68,7 +68,7 @@ fun MenuInferiorAdmin(navController: NavController){
                     modifier = Modifier.size(40.dp),
                     painter = painterResource(R.drawable.icon_ranking),
                     contentDescription = null,
-                    tint = Color(0xFF1F1D35)
+                    tint = Color.White
                 )
             }
         )

@@ -55,7 +55,7 @@ import com.example.myapplication.ui.theme.MyApplicationTheme
 fun TelaRankingPreview() {
     val navController = rememberNavController()
 
-    TelaLogin(navController = navController)
+    TelaLogin(navController = navController, onLogin = {})
 }
 
 @Composable
@@ -84,8 +84,8 @@ fun gerarBloco(letra: Char, cor: Color){
 
 //@Preview(showBackground = true)
 @Composable
-
-fun TelaLogin(navController: NavController){
+fun TelaLogin(navController: NavController,
+              onLogin:(Int) -> Unit){
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.background(Color(0xFF1F1D35)),
@@ -158,7 +158,10 @@ fun TelaLogin(navController: NavController){
                                 containerColor = Color(0xFF49B43F),
                                 contentColor = Color.White
                             ),
-                            onClick = {navController.navigate(Rotas.CADASTRAR_PALAVRA)}
+                            onClick = {
+                                onLogin(0)
+                                navController.navigate(Rotas.RANKING)
+                            }
                         ) {
                             Row(
                                 modifier = Modifier
@@ -208,7 +211,9 @@ fun TelaLogin(navController: NavController){
                                 containerColor = Color(0xFFF8B83C),
                                 contentColor = Color.White,
                             ),
-                            onClick = { navController.navigate(Rotas.JOGO.replace("{idJogo}", "0")) }
+                            onClick = {
+                                onLogin(1)
+                                navController.navigate(Rotas.RANKING) }
                         ) {
                             Row(
                                 modifier = Modifier
