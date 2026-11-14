@@ -18,4 +18,7 @@ interface UsuarioDAO {
 
     @Update
     suspend fun atualizarPts(usuario: Usuario)
+
+    @Query("SELECT * FROM Usuario ORDER BY id ASC LIMIT 1")
+    suspend fun buscarJogador(): Usuario?
 }

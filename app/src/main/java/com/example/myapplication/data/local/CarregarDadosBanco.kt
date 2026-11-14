@@ -7,7 +7,11 @@ suspend fun carregarDadosBanco(db: AppDatabase) {
         val usuarioDAO = db.usuarioDAO()
 
         if (usuarioDAO.contarUsuarios() == 0) {
-            // Depois cadastra os jogadores fictícios
+
+            usuarioDAO.inserir(
+                Usuario(nomeUsuario = "Jogador", pontuacao = 0)
+            )
+
             Dados.usuarios.forEach {
                 usuarioDAO.inserir(it)
             }
