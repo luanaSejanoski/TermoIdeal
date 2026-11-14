@@ -14,8 +14,8 @@ interface JogoDAO {
     @Query("SELECT * FROM Jogo ORDER BY id DESC LIMIT 1")
     suspend fun buscarUltimaPalavraCadastrada(): Jogo?
 
-//    @Query("SELECT * FROM Jogo ORDER BY data DESC")
-//    fun listarTodosOsJogos(): Flow<List<Jogo>>
+    @Query("SELECT * FROM Jogo ORDER BY id DESC")
+    fun listarTodosOsJogos(): Flow<List<Jogo>>
 
 
 }

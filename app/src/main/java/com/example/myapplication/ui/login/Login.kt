@@ -213,7 +213,7 @@ fun TelaLogin(navController: NavController,
                             ),
                             onClick = {
                                 onLogin(1)
-                                navController.navigate(Rotas.RANKING) }
+                                navController.navigate(Rotas.JOGO) }
                         ) {
                             Row(
                                 modifier = Modifier

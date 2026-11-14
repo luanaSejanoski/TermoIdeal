@@ -32,4 +32,12 @@ object Dados {
         Usuario(nomeUsuario = "Dedao_do_Peh", pontuacao = 120),
         Usuario(nomeUsuario = "Tio_Nerd_do_Zap", pontuacao = 2650)
     )
+
+    val palavras = listOf(
+        Jogo(palavra = "ARARA"),
+        Jogo(palavra = "LIVRO"),
+        Jogo(palavra = "NUVEM"),
+        Jogo(palavra = "TIGRE"),
+        Jogo(palavra = "AMORA")
+    )
 }

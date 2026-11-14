@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
@@ -19,8 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.data.local.AppDatabase
+import com.example.myapplication.data.local.Jogo
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import kotlin.text.clear
 
@@ -48,12 +52,18 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun telaFoda() {
+    val context = LocalContext.current
+
+    var jogoAtual by remember {
+        mutableStateOf<Jogo?>(null)
+    }
+
     var texto by remember { mutableStateOf("") }
     var textoDigitado by remember { mutableStateOf("") }
     var textoPicotado: List<Char> = textoDigitado.uppercase().toList()
 
-    var palavra = "Arara"
-    var palavraPicotada: List<Char> = palavra.uppercase().toList()
+    val palavra = jogoAtual?.palavra ?: ""
+    val palavraPicotada = palavra.uppercase().toList()
 
     val letrasNaPalavra = remember { mutableStateListOf<Char>() }
     val letrasForaDaPalavra = remember { mutableStateListOf<Char>() }
@@ -72,6 +82,16 @@ fun telaFoda() {
         letrasForaDaPalavra.clear()
         letrasPosicaoCorreta.clear()
         letrasPosicaoErrada.clear()
+    }
+
+    LaunchedEffect(Unit) {
+        val db = AppDatabase.getDatabase(context)
+        jogoAtual = db.jogoDAO().buscarUltimaPalavraCadastrada()
+    }
+
+    if (jogoAtual == null) {
+        Text("Carregando palavra...")
+        return
     }
 
     Surface(

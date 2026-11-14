@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [Jogo::class, ProgressoJogo::class, Tentativa::class, Usuario::class],
-    version = 1)
+    version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun jogoDAO(): JogoDAO
     abstract fun progressoAO(): ProgressoJogoDAO
@@ -30,7 +30,9 @@ abstract class AppDatabase: RoomDatabase() {
                         context.applicationContext,
                         AppDatabase::class.java,
                         "app_database"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration(true)
+                        .build()
 
                     INSTANCE = instance
                     return instance

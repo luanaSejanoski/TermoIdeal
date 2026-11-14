@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Tentativa(
     @PrimaryKey(autoGenerate = true)
     val id:Int = 0,
-    val ProgressoJogoId: Int,
+    val progressoJogoId: Int,
     val PalavraDigitada: String,
     val numeroTentativa: Int,
     val resultado: String
