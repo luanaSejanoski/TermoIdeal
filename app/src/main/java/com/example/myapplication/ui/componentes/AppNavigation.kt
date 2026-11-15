@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.componentes
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -9,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -37,6 +40,8 @@ fun AppNavigation(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val rotaAtual = navBackStackEntry?.destination?.route
 
+
+
     var tipoUsuario by rememberSaveable { mutableStateOf<Int?>(null) }
 
     LaunchedEffect(rotaAtual) {
@@ -48,9 +53,9 @@ fun AppNavigation(navController: NavHostController) {
 
     Scaffold(
         bottomBar = {
-            when(tipoUsuario){
-                0 -> if(rotaAtual in rotasMenuAdmin) MenuInferiorAdmin(navController)
-                1-> if(rotaAtual in rotasMenuJogador) MenuInferiorJogador(navController)
+                when (tipoUsuario) {
+                    0 -> if (rotaAtual in rotasMenuAdmin) MenuInferiorAdmin(navController)
+                    1 -> if (rotaAtual in rotasMenuJogador) MenuInferiorJogador(navController)
             }
         }
     ) { paddingValues ->
@@ -86,7 +91,9 @@ fun AppNavigation(navController: NavHostController) {
             }
 
             composable(Rotas.CADASTRAR_PALAVRA){
-                TelaCadastrarPalavra(navController)
+                TelaCadastrarPalavra(
+
+                )
             }
         }
 
