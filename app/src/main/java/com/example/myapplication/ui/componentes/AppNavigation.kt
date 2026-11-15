@@ -15,7 +15,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.myapplication.ui.inicial.TelaInicial
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.myapplication.ui.addpalavras.TelaCadastrarPalavra
 import com.example.myapplication.ui.inicial.TelaEmConstrucao
+import com.example.myapplication.ui.jogospassados.TelaJogosPassados
 import com.example.myapplication.ui.login.TelaLogin
 import com.example.myapplication.ui.ranking.TelaRanking
 import com.example.termoideal.telaFoda
@@ -23,7 +25,7 @@ import com.example.termoideal.telaFoda
 object Rotas{
     const val TELA_INICIAL = "telaInicial"
     const val TELA_LOGIN = "telaLogin"
-    const val JOGO = "jogo"
+    const val JOGO = "jogo/{idJogo}"
     const val JOGOS_PASSADOS = "jogosPassados/{idUsuario}"
     const val RANKING = "ranking/{idUsuario}"
     const val CADASTRAR_PALAVRA = "cadastrarPalavra"
@@ -74,7 +76,7 @@ fun AppNavigation(navController: NavHostController) {
             }
 
             composable(Rotas.JOGOS_PASSADOS){
-                TelaEmConstrucao("Jogos passados")
+                TelaJogosPassados(navController)
             }
 
             composable(Rotas.RANKING){
@@ -84,7 +86,7 @@ fun AppNavigation(navController: NavHostController) {
             }
 
             composable(Rotas.CADASTRAR_PALAVRA){
-                TelaEmConstrucao("Cadastrar palavra")
+                TelaCadastrarPalavra(navController)
             }
         }
 

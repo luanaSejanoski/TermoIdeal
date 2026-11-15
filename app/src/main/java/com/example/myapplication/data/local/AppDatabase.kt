@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
     version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun jogoDAO(): JogoDAO
-    abstract fun progressoAO(): ProgressoJogoDAO
+    abstract fun progressoDAO(): ProgressoJogoDAO
     abstract fun usuarioDAO(): UsuarioDAO
     abstract fun tentativaDAO(): TentativaDAO
 
