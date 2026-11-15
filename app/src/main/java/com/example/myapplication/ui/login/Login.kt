@@ -160,7 +160,7 @@ fun TelaLogin(navController: NavController,
                             ),
                             onClick = {
                                 onLogin(0)
-                                navController.navigate(Rotas.RANKING)
+                                navController.navigate(Rotas.CADASTRAR_PALAVRA)
                             }
                         ) {
                             Row(
