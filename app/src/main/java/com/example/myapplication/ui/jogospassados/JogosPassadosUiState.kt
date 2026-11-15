@@ -1,4 +1,9 @@
 package com.example.myapplication.ui.jogospassados
 
-class JogosPassadosUiState {
+import com.example.myapplication.data.local.Jogo
+
+data class JogosPassadosUiState(
+    val jogosCriados: List<Jogo> = emptyList()
+) {
+
 }

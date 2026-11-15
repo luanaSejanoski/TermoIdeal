@@ -181,7 +181,7 @@ fun telaFoda() {
             if (usuario != null) {
                 usuarioId = usuario.id
 
-                val progresso = db.progressoAO().buscarProgressoDoUsuario(
+                val progresso = db.progressoDAO().buscarProgressoDoUsuario(
                     usuario.id,
                     jogo.id
                 )
@@ -292,11 +292,11 @@ fun telaFoda() {
             )
 
             if (progressoId == 0) {
-                progressoId = db.progressoAO()
+                progressoId = db.progressoDAO()
                     .inserirNovoProgresso(progresso)
                     .toInt()
             } else {
-                db.progressoAO().atualizarProgresso(progresso)
+                db.progressoDAO().atualizarProgresso(progresso)
             }
 
             if(venceu){
