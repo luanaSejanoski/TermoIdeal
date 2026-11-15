@@ -11,7 +11,7 @@ interface JogoDAO {
     @Insert
     suspend fun inserirNovoJogo(jogo: Jogo): Long
 
-    @Query("SELECT * FROM Jogo ORDER BY id DESC LIMIT 1")
+    @Query("SELECT * FROM Jogo WHERE id = 2")
     suspend fun buscarUltimaPalavraCadastrada(): Jogo?
 
     @Query("SELECT * FROM Jogo ORDER BY id DESC")

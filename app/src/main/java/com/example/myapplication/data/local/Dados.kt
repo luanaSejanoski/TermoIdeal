@@ -38,6 +38,7 @@ object Dados {
         Jogo(palavra = "LIVRO"),
         Jogo(palavra = "NUVEM"),
         Jogo(palavra = "TIGRE"),
-        Jogo(palavra = "AMORA")
+        Jogo(palavra = "AMORA"),
+        Jogo(palavra = "VIADO")
     )
 }

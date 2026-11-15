@@ -21,4 +21,8 @@ interface UsuarioDAO {
 
     @Query("SELECT * FROM Usuario ORDER BY id ASC LIMIT 1")
     suspend fun buscarJogador(): Usuario?
+
+    @Query("""UPDATE Usuario SET pontuacao = pontuacao + :pontos
+            WHERE id = :idUsuario""")
+    suspend fun adicionarPontuacao(idUsuario: Int, pontos: Int)
 }
