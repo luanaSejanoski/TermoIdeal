@@ -16,13 +16,10 @@ interface UsuarioDAO {
     @Query("SELECT * FROM Usuario ORDER BY pontuacao DESC")
     fun buscar(): Flow<List<Usuario>>
 
-    @Update
-    suspend fun atualizarPts(usuario: Usuario)
-
     @Query("SELECT * FROM Usuario ORDER BY id ASC LIMIT 1")
-    suspend fun buscarJogador(): Usuario?
+    suspend fun buscarJogadorEspecifico(): Usuario?
 
     @Query("""UPDATE Usuario SET pontuacao = pontuacao + :pontos
             WHERE id = :idUsuario""")
-    suspend fun adicionarPontuacao(idUsuario: Int, pontos: Int)
+    suspend fun atualizarPts(idUsuario: Int, pontos: Int)
 }

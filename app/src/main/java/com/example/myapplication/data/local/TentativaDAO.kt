@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 interface TentativaDAO {
 
     @Insert
-    suspend fun isnerirNovaTentativa(tentativa: Tentativa): Long
+    suspend fun inserir(tentativa: Tentativa): Long
 
     @Query("SELECT * FROM Tentativa WHERE progressoJogoId = :progressoJogoId ORDER BY numeroTentativa ASC")
-    fun buscarTentativasDoProgresso(progressoJogoId: Int): Flow<List<Tentativa>>
+    fun buscar(progressoJogoId: Int): Flow<List<Tentativa>>
 
     @Query("SELECT * FROM Tentativa WHERE id= :id")
     suspend fun buscarTentativaId(id: Int): Tentativa?

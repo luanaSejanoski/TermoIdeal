@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.Flow
 interface ProgressoJogoDAO {
 
     @Insert
-    suspend fun inserirNovoProgresso(progressoJogo: ProgressoJogo): Long
+    suspend fun inserir(progressoJogo: ProgressoJogo): Long
 
     @Query("SELECT * FROM ProgressoJogo WHERE usuarioId = :usuarioId AND jogoId = :jogoId LIMIT 1")
-    suspend fun buscarProgressoDoUsuario(usuarioId: Int, jogoId: Int): ProgressoJogo?
+    suspend fun buscar(usuarioId: Int, jogoId: Int): ProgressoJogo?
 
     @Update
-    suspend fun atualizarProgresso(progresso: ProgressoJogo)
+    suspend fun atualizar(progresso: ProgressoJogo)
 
     @Query("SELECT * FROM ProgressoJogo WHERE usuarioId = :usuarioId")
-    fun listarProgressosDoUsuario(usuarioId: Int): Flow<List<ProgressoJogo>>
+    fun listar(usuarioId: Int): Flow<List<ProgressoJogo>>
 }
