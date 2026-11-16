@@ -1,6 +1,7 @@
 package com.example.termoideal
 
 import JogoDiarioViewModelFactory
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.BorderStroke
@@ -35,6 +36,7 @@ import com.example.myapplication.data.local.AppDatabase
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -45,6 +47,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.PalavraRepository
 import com.example.myapplication.data.repository.ProgressoJogoRepository
 import com.example.myapplication.data.repository.TentativaRepository
 import com.example.myapplication.data.repository.UsuarioRepository
@@ -69,12 +72,28 @@ fun telaJogoDiario(
             TentativaRepository(
                 AppDatabase.getDatabase(LocalContext.current).tentativaDAO(),
             ),
+            PalavraRepository(),
             idJogo
         )
     )
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    val context = LocalContext.current
+
+    LaunchedEffect(uiState.erro) {
+        uiState.erro?.let { mensagem ->
+            Toast.makeText(
+                context,
+                mensagem,
+                Toast.LENGTH_SHORT
+            ).show()
+
+            viewModel.limparErro()
+        }
+    }
+
 
     val foco = remember { FocusRequester() }
     val teclado = LocalSoftwareKeyboardController.current
@@ -98,9 +117,6 @@ fun telaJogoDiario(
         }
         return
     }
-
-
-
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -132,7 +148,8 @@ fun telaJogoDiario(
                 ),
                 keyboardActions = KeyboardActions(
                     onSend = {
-                        viewModel.enviarPalavra()
+                        viewModel.ValidaAcaoEnviar()
+
                     }
                 ),
                 modifier = Modifier

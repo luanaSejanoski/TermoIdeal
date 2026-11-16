@@ -2,6 +2,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.data.local.AppDatabase
 import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.PalavraRepository
 import com.example.myapplication.data.repository.ProgressoJogoRepository
 import com.example.myapplication.data.repository.TentativaRepository
 import com.example.myapplication.data.repository.UsuarioRepository
@@ -12,6 +13,7 @@ class JogoDiarioViewModelFactory(
     private val usuarioRepository: UsuarioRepository,
     private val progressoRepository: ProgressoJogoRepository,
     private val tentativaRepository: TentativaRepository,
+    private val palavraRepository: PalavraRepository,
 
     private val idJogo: Int? = null
 ) : ViewModelProvider.Factory {
@@ -24,6 +26,7 @@ class JogoDiarioViewModelFactory(
                 usuarioRepository,
                 progressoRepository,
                 tentativaRepository,
+                palavraRepository,
                 idJogo
             ) as T
         }

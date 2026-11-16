@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.local.ProgressoJogo
 import com.example.myapplication.data.local.Tentativa
 import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.PalavraRepository
 import com.example.myapplication.data.repository.ProgressoJogoRepository
 import com.example.myapplication.data.repository.TentativaRepository
 import com.example.myapplication.data.repository.UsuarioRepository
@@ -22,6 +23,7 @@ class JogoDiarioViewModel(
     private val usuarioRepository: UsuarioRepository,
     private val progressoRepository: ProgressoJogoRepository,
     private val tentativaRepository: TentativaRepository,
+    private val palavraRepository: PalavraRepository,
 
     private val idJogo: Int? = null
 ) : ViewModel() {
@@ -301,6 +303,36 @@ class JogoDiarioViewModel(
         }
     }
 
+    fun ValidaAcaoEnviar(){
+        val estado = _uiState.value
+
+        if(estado.verificando) return
+        if(estado.tentativas >= 6 || estado.venceu || estado.perdeu) return
+        if(estado.texto.length != 5 || !estado.texto.all {it. isLetter()}) return
+
+        viewModelScope.launch {
+            _uiState.update { it.copy(verificando = true, erro = null) }
+
+            when (palavraRepository.palavraExiste(estado.texto)) {
+                true -> {
+                    _uiState.update { it.copy(verificando = false) }
+                    enviarPalavra()
+                }
+                false -> _uiState.update {
+                    it.copy(verificando = false, erro = "Essa palavra não existe no dicionário")
+                }
+                null -> _uiState.update {
+                    it.copy(verificando = false, erro = "Não foi possível verificar. Confira a internet")
+                }
+            }
+        }
+    }
+
+    fun limparErro() {
+        _uiState.update {
+            it.copy(erro = null)
+        }
+    }
 
     fun atualizarTexto(novoTexto: String) {
         val estado = _uiState.value

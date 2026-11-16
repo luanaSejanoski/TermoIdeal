@@ -24,5 +24,9 @@ data class JogoDiarioUiState (
 
     val coresTabuleiro: List<List<Color>> = List(6) {
         List(5) { Color(0xFF34314F) }
-    }
+    },
+
+    val verificando: Boolean = false,
+
+    val erro: String? = null
 )
