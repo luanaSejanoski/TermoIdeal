@@ -8,9 +8,9 @@ suspend fun carregarDadosBanco(db: AppDatabase) {
 
         if (usuarioDAO.contarUsuarios() == 0) {
 
-            usuarioDAO.inserir(
-                Usuario(nomeUsuario = "Jogador", pontuacao = 0)
-            )
+            // usuarioDAO.inserir(
+            //     Usuario(nomeUsuario = "Jogador", pontuacao = 0)
+            // )
 
             Dados.usuarios.forEach {
                 usuarioDAO.inserir(it)
