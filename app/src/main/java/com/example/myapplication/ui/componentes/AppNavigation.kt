@@ -20,7 +20,7 @@ import com.example.myapplication.ui.inicial.TelaEmConstrucao
 import com.example.myapplication.ui.jogospassados.TelaJogosPassados
 import com.example.myapplication.ui.login.TelaLogin
 import com.example.myapplication.ui.ranking.TelaRanking
-import com.example.termoideal.telaFoda
+import com.example.termoideal.telaJogoDiario
 
 object Rotas{
     const val TELA_INICIAL = "telaInicial"
@@ -70,8 +70,12 @@ fun AppNavigation(navController: NavHostController) {
                 })
             }
 
-            composable(Rotas.JOGO){
-                telaFoda(
+            composable(Rotas.JOGO){ entrada ->
+                val idJogo = entrada.arguments?.getString("idJogo")?.toIntOrNull() ?: 0
+
+                telaJogoDiario(
+                    navController = navController,
+                    idJogo = idJogo
                 )
             }
 
@@ -86,7 +90,7 @@ fun AppNavigation(navController: NavHostController) {
             }
 
             composable(Rotas.CADASTRAR_PALAVRA){
-                TelaCadastrarPalavra(navController)
+                TelaCadastrarPalavra()
             }
         }
 
