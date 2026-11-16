@@ -101,7 +101,7 @@ O app consulta uma **API de palavras** para confirmar que o texto digitado é um
 - na tela de **cadastrar palavras**, para que o administrador só cadastre palavras válidas;
 - na tela do **jogo**, para que o jogador só envie tentativas que sejam palavras reais.
 
-Repository: https://github.com/viniciusmesquitac/papalavras-server.git
+Api: https://api.dicionario-aberto.net/
 
 ## Tecnologias
 
