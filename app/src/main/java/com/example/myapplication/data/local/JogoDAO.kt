@@ -22,6 +22,9 @@ interface JogoDAO {
     @Query("SELECT * FROM Jogo WHERE id = :idJogo")
     suspend fun buscarJogo(idJogo: Int): Jogo?
 
+    @Query("DELETE FROM Jogo WHERE id = :idJogo")
+    suspend fun deletarInfosJogo(idJogo: Int)
+
     @Delete
     suspend fun deletarJogo(jogo: Jogo)
 

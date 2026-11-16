@@ -103,7 +103,9 @@ fun TelaCadastrarPalavra(
                 busca = uiState.busca,
                 onBuscaChange = viewModel::aoAlterarBusca
             )
-            uiState.palavraEncontrada?.let { criarResultadoBusca(it) }
+            uiState.jogosFiltrados.forEach { jogo ->
+                criarResultadoBusca(jogo.palavra)
+            }
 
             Row(modifier = Modifier
                 .fillMaxWidth()
@@ -118,6 +120,15 @@ fun TelaCadastrarPalavra(
                 palavra = uiState.novaPalavra,
                 onPalavraChange = viewModel::aoAlterarNovaPalavra
             )
+            uiState.mensagemErroPalavra?.let { mensagem ->
+                Text(
+                    text = mensagem,
+                    color = Color.White,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 30.dp, top = 6.dp)
+                )
+            }
 
             Row(modifier = Modifier
                 .fillMaxWidth()

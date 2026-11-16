@@ -12,8 +12,18 @@ data class AdicionarPalavraUiState(
     val novaPalavra: String = "",
     val palavraValida: Boolean = false
 ) {
-    val palavraEncontrada: String?
-        get() = todosOsJogos
-            .firstOrNull { it.palavra.equals(busca.trim(), ignoreCase = true) }
-            ?.palavra
+    val jogoJaExiste: Boolean
+        get() = novaPalavra.isNotBlank() && todosOsJogos.any {
+                    it.palavra.equals(novaPalavra.trim(), ignoreCase = true)
+            }
+    val mensagemErroPalavra: String?
+        get() = when {
+            jogoJaExiste -> "Essa palavra já foi cadastrada!"
+            novaPalavra.isNotBlank() && novaPalavra.length != 5 -> "A palavra precisa ter 5 letras"
+            else -> null
+        }
+
+    val jogosFiltrados: List<Jogo>
+        get() = if (busca.isBlank()) emptyList()
+        else todosOsJogos.filter { it.palavra.contains(busca.trim(), ignoreCase = true) }
 }

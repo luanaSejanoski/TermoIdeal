@@ -85,13 +85,16 @@ class AdicionarPalavraViewModel (
     fun ehPalavraValida(palavra: String) : Boolean{
         return palavra.length == 5
                 && palavra.all {it.isLetter()}
-                && todosOsJogos.none {it.palavra.equals(palavra, ignoreCase = true)}
+                && !todosOsJogos.any {it.palavra.equals(palavra, ignoreCase = true)}
     }
 
     //funcoes referentes a listagem e pesquisa de jogos existentes
     fun listarJogosExistentes(){
         viewModelScope.launch{
-            jogoRepository.listarTodosOsJogos().collect {lista -> _uiState.update { it.copy(todosOsJogos = lista)}}
+            jogoRepository.listarTodosOsJogos().collect {lista ->
+                todosOsJogos = lista
+
+                _uiState.update { it.copy(todosOsJogos = lista)}}
         }
     }
 

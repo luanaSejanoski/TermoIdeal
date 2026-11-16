@@ -81,7 +81,9 @@ fun AppNavigation(navController: NavHostController) {
             }
 
             composable(Rotas.JOGOS_PASSADOS){
-                TelaJogosPassados(navController)
+                TelaJogosPassados(
+                    onJogoClick = { id -> navController.navigate("jogo/$id") }
+                )
             }
 
             composable(Rotas.RANKING){
