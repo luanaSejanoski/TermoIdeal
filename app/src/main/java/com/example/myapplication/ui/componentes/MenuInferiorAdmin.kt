@@ -49,7 +49,7 @@ fun MenuInferiorAdmin(navController: NavController){
 
             icon = {
                 Icon(
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(30.dp),
                     painter = painterResource(R.drawable.icon_jogar),
                     contentDescription = null,
                     tint = Color.White
@@ -65,8 +65,23 @@ fun MenuInferiorAdmin(navController: NavController){
 
             icon = {
                 Icon(
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(30.dp),
                     painter = painterResource(R.drawable.icon_ranking),
+                    contentDescription = null,
+                    tint = Color.White
+                )
+            }
+        )
+
+        NavigationBarItem(
+            selected = rotaAtual == Rotas.TELA_LOGIN,
+            onClick = {
+                navController.navigate(Rotas.TELA_LOGIN)
+            },
+            icon = {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    painter = painterResource(R.drawable.icon_logout),
                     contentDescription = null,
                     tint = Color.White
                 )
