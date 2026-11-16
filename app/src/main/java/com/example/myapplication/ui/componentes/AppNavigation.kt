@@ -25,7 +25,8 @@ import com.example.termoideal.telaJogoDiario
 object Rotas{
     const val TELA_INICIAL = "telaInicial"
     const val TELA_LOGIN = "telaLogin"
-    const val JOGO = "jogo/{idJogo}"
+    const val JOGO = "jogo"
+    const val JOGO_COM_ID = "jogo/{idJogo}"
     const val JOGOS_PASSADOS = "jogosPassados/{idUsuario}"
     const val RANKING = "ranking/{idUsuario}"
     const val CADASTRAR_PALAVRA = "cadastrarPalavra"
@@ -43,7 +44,7 @@ fun AppNavigation(navController: NavHostController) {
         if (rotaAtual == Rotas.TELA_INICIAL) tipoUsuario = null
     }
 
-    val rotasMenuJogador = listOf(Rotas.JOGO, Rotas.JOGOS_PASSADOS, Rotas.RANKING)
+    val rotasMenuJogador = listOf(Rotas.JOGO, Rotas.JOGO_COM_ID, Rotas.JOGOS_PASSADOS, Rotas.RANKING)
     val rotasMenuAdmin = listOf(Rotas.CADASTRAR_PALAVRA, Rotas.JOGOS_PASSADOS, Rotas.RANKING)
 
     Scaffold(
@@ -70,11 +71,18 @@ fun AppNavigation(navController: NavHostController) {
                 })
             }
 
-            composable(Rotas.JOGO){ entrada ->
-                val idJogo = entrada.arguments?.getString("idJogo")?.toIntOrNull() ?: 0
-
+            composable(Rotas.JOGO){
                 telaJogoDiario(
-                    navController = navController,
+                   navController = navController
+                )
+            }
+
+            composable(Rotas.JOGO_COM_ID) { entrada ->
+                val idJogo = entrada.arguments
+                    ?.getString("idJogo")
+                    ?.toIntOrNull()
+
+                telaJogoDiario(navController = navController,
                     idJogo = idJogo
                 )
             }

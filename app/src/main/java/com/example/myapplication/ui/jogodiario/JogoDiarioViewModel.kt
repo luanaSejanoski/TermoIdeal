@@ -9,13 +9,21 @@ import kotlinx.coroutines.flow.asStateFlow
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.local.ProgressoJogo
 import com.example.myapplication.data.local.Tentativa
+import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.ProgressoJogoRepository
+import com.example.myapplication.data.repository.TentativaRepository
+import com.example.myapplication.data.repository.UsuarioRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class JogoDiarioViewModel(
-    private val db: AppDatabase,
-    private val idJogo: Int
+    private val repository: JogoRepository,
+    private val usuarioRepository: UsuarioRepository,
+    private val progressoRepository: ProgressoJogoRepository,
+    private val tentativaRepository: TentativaRepository,
+
+    private val idJogo: Int? = null
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(JogoDiarioUiState())
@@ -26,18 +34,22 @@ class JogoDiarioViewModel(
 
     init {
         viewModelScope.launch {
-
-            val jogo = db.jogoDAO().buscarJogo(idJogo)
+            val jogo = if (idJogo != null) {
+                repository.buscarJogo(idJogo)
+            } else {
+                repository.buscarUltimaPalavraCadastrada()
+            }
 
             if (jogo != null) {
 
-                val usuario = db.usuarioDAO().buscarJogador()
+                val usuario = usuarioRepository.buscarJogador()
 
                 if (usuario != null) {
 
                     usuarioId = usuario.id
 
-                    val progresso = db.progressoDAO().buscarProgressoDoUsuario(
+
+                    val progresso = progressoRepository.buscarProgressoDoUsuario(
                         usuario.id,
                         jogo.id
                     )
@@ -46,7 +58,7 @@ class JogoDiarioViewModel(
 
                         progressoId = progresso.id
 
-                        val palavrasSalvas = db.tentativaDAO()
+                        val palavrasSalvas =tentativaRepository
                             .buscarTentativasDoProgresso(progresso.id)
                             .first()
 
@@ -191,7 +203,9 @@ class JogoDiarioViewModel(
         if (!texto.all { it.isLetter() }) return
 
         val jogo = estado.jogoAtual ?: return
+
         val idUsuarioAtual = usuarioId ?: return
+
 
         val palavraDigitada = texto.uppercase()
         val palavra = jogo.palavra.uppercase()
@@ -256,19 +270,19 @@ class JogoDiarioViewModel(
             )
 
             if (progressoId == 0) {
-                progressoId = db.progressoDAO()
+                progressoId = progressoRepository
                     .inserirNovoProgresso(progresso)
                     .toInt()
             } else {
-                db.progressoDAO().atualizarProgresso(progresso)
+               progressoRepository.atualizarProgresso(progresso)
             }
 
             if (venceu) {
                 val pontos = calcularPontuacao(venceu, novasTentativas)
-                db.usuarioDAO().adicionarPontuacao(idUsuarioAtual, pontos)
+                usuarioRepository.atualizarPontuacao(idUsuarioAtual, pontos)
             }
 
-            db.tentativaDAO().isnerirNovaTentativa(
+            tentativaRepository.inserirNovaTentativa(
                 Tentativa(
                     progressoJogoId = progressoId,
                     PalavraDigitada = palavraDigitada,
@@ -277,7 +291,7 @@ class JogoDiarioViewModel(
                 )
             )
 
-            val palavrasSalvas = db.tentativaDAO()
+            val palavrasSalvas = tentativaRepository
                 .buscarTentativasDoProgresso(progressoId)
                 .first()
 

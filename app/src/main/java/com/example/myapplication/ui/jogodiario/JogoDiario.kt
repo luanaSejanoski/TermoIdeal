@@ -41,8 +41,13 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.ProgressoJogoRepository
+import com.example.myapplication.data.repository.TentativaRepository
+import com.example.myapplication.data.repository.UsuarioRepository
 import com.example.myapplication.ui.jogodiario.JogoDiarioUiState
 import com.example.myapplication.ui.jogodiario.JogoDiarioViewModel
 
@@ -51,23 +56,25 @@ import com.example.myapplication.ui.jogodiario.JogoDiarioViewModel
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun telaJogoDiario(
-    idJogo: Int,
     navController: NavController,
-    jogoDiarioViewModel: JogoDiarioViewModel = viewModel(
+    idJogo: Int? = null,
+    viewModel: JogoDiarioViewModel = viewModel(
         factory = JogoDiarioViewModelFactory(
-            AppDatabase.getDatabase(LocalContext.current),
+            JogoRepository(
+                AppDatabase.getDatabase(LocalContext.current).jogoDAO(),),
+            UsuarioRepository(
+                AppDatabase.getDatabase(LocalContext.current).usuarioDAO(),),
+            ProgressoJogoRepository(
+                        AppDatabase.getDatabase(LocalContext.current).progressoDAO(),),
+            TentativaRepository(
+                AppDatabase.getDatabase(LocalContext.current).tentativaDAO(),
+            ),
             idJogo
         )
     )
 ) {
-    val context = LocalContext.current
-    val db = AppDatabase.getDatabase(context)
 
-    val jogoDiarioViewModel: JogoDiarioViewModel = viewModel(
-        factory = JogoDiarioViewModelFactory(db, idJogo)
-    )
-
-    val uiState: JogoDiarioUiState by jogoDiarioViewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val foco = remember { FocusRequester() }
     val teclado = LocalSoftwareKeyboardController.current
@@ -92,6 +99,9 @@ fun telaJogoDiario(
         return
     }
 
+
+
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF1D1A35)
@@ -113,7 +123,7 @@ fun telaJogoDiario(
                         .uppercase()
                         .take(5)
 
-                    jogoDiarioViewModel.atualizarTexto(palavraDigitada)
+                    viewModel.atualizarTexto(palavraDigitada)
 
                 },
                 keyboardOptions = KeyboardOptions(
@@ -122,7 +132,7 @@ fun telaJogoDiario(
                 ),
                 keyboardActions = KeyboardActions(
                     onSend = {
-                        jogoDiarioViewModel.enviarPalavra()
+                        viewModel.enviarPalavra()
                     }
                 ),
                 modifier = Modifier

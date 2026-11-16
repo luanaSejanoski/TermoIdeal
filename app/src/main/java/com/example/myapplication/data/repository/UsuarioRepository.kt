@@ -11,12 +11,14 @@ class UsuarioRepository (
         return usuarioDAO.buscar()
     }
 
-    suspend fun atualizarPontuacao(usuario: Usuario, novaPontuacao: Int){
-        val usuarioAtualizado = usuario.copy(
-            pontuacao = novaPontuacao
-        )
 
-        return usuarioDAO.atualizarPts(usuarioAtualizado)
+    suspend fun buscarJogador(): Usuario?{
+        return  usuarioDAO.buscarJogadorEspecifico()
+    }
+
+
+    suspend fun atualizarPontuacao(idUsuario: Int, novaPontuacao: Int){
+        return usuarioDAO.atualizarPts(idUsuario, novaPontuacao)
     }
 
 }

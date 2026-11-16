@@ -1,29 +1,34 @@
 package com.example.myapplication.data.repository
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
 import com.example.myapplication.data.local.Jogo
 import com.example.myapplication.data.local.JogoDAO
 import kotlinx.coroutines.flow.Flow
 
 class JogoRepository(
-    private val jogoDAO : JogoDAO
+    private val jogoDAO: JogoDAO
 ) {
-    suspend fun inserirNovoJogo(jogo: Jogo): Long{
+    suspend fun inserirNovoJogo(jogo: Jogo): Long {
         return jogoDAO.inserirNovoJogo(jogo)
     }
-    suspend fun buscarUltimaPalavraCadastrada() : Jogo?{
+
+    suspend fun buscarUltimaPalavraCadastrada(): Jogo? {
         return jogoDAO.buscarUltimaPalavraCadastrada()
     }
-    fun listarTodosOsJogos(): Flow<List<Jogo>>{
+
+    fun listarTodosOsJogos(): Flow<List<Jogo>> {
         return jogoDAO.listarTodosOsJogos()
     }
-    //funcao pra direcionar para um jogo especifico
-    suspend fun buscarJogo(idJogo: Int): Jogo?{
+
+    // Função para direcionar para um jogo específico
+    suspend fun buscarJogo(idJogo: Int): Jogo? {
         return jogoDAO.buscarJogo(idJogo)
     }
-    suspend fun deletarJogo(jogo: Jogo){
-        return jogoDAO.deletarJogo(jogo)
+
+    suspend fun deletarJogo(jogo: Jogo) {
+        jogoDAO.deletarJogo(jogo)
+    }
+
+    suspend fun deletarInfosJogo(idJogo: Int){
+        jogoDAO.deletarInfosJogo(idJogo)
     }
 }

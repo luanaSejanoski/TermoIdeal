@@ -17,12 +17,12 @@ suspend fun carregarDadosBanco(db: AppDatabase) {
             }
         }
 
-//        val jogoDAO = db.jogoDAO()
-//        if (jogoDAO.buscarUltimaPalavraCadastrada() == null) {
-//            Dados.palavras.forEach {
-//                jogoDAO.inserirNovoJogo(it)
-//            }
-//        }
+        val jogoDAO = db.jogoDAO()
+        if (jogoDAO.buscarUltimaPalavraCadastrada() == null) {
+            Dados.palavras.forEach {
+                jogoDAO.inserirNovoJogo(it)
+            }
+        }
     } catch (e: Exception) {
         Log.e("carregarDadosBanco", "Erro na carga: ${e.message}")
     }
