@@ -14,7 +14,6 @@ Aplicativo Android de jogo de palavras inspirado no **Termo**. O jogador tenta d
 - [Validação de palavras (API)](#validação-de-palavras-api)
 - [Tecnologias](#tecnologias)
 - [Como executar](#como-executar)
-- [Autores](#autores)
 
 ## Demonstração
 
@@ -24,28 +23,23 @@ Aplicativo Android de jogo de palavras inspirado no **Termo**. O jogador tenta d
 
 ## Telas
 
-<!--
-TODO: salvar os prints em uma pasta do projeto (por exemplo, "imagens/") e
-trocar os caminhos abaixo pelos nomes reais dos arquivos.
--->
-
 ### Geral
 
 | Tela inicial | Login |
 | :---: | :---: |
-| ![Tela inicial](imagens/tela-inicial.png) | ![Tela de login](imagens/login.png) |
+| <img width="250" alt="Tela inicial" src="https://github.com/user-attachments/assets/42ba40e0-7650-47aa-860b-034db384840e" /> | <img width="250" alt="Tela de login" src="https://github.com/user-attachments/assets/a6bc1da4-4484-4c55-b15e-3f2c0552c4b4" /> |
 
 ### Perfil Jogador
 
 | Jogo diário | Jogos passados | Ranking |
 | :---: | :---: | :---: |
-| ![Jogo diário](imagens/jogador-jogo.png) | ![Jogos passados do jogador](imagens/jogador-jogos-passados.png) | ![Ranking do jogador](imagens/jogador-ranking.png) |
+| <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/f58dd9a1-ba00-4bf1-aea5-648894da322b" />| ![Jogos passados do jogador](imagens/jogador-jogos-passados.png) | ![Ranking do jogador](imagens/jogador-ranking.png) |
 
 ### Perfil Administrador
 
 | Cadastrar palavras | Jogos passados | Ranking |
 | :---: | :---: | :---: |
-| ![Cadastrar palavras](imagens/admin-cadastrar.png) | ![Jogos passados do admin](imagens/admin-jogos-passados.png) | ![Ranking do admin](imagens/admin-ranking.png) |
+| ![Cadastrar palavras](imagens/admin-cadastrar.png) | ![Jogos passados do admin](imagens/admin-jogos-passados.png) | <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/09cd3156-06ef-4689-8f5f-f4722e6bf38c" /> |
 
 ## Como o jogo funciona
 
@@ -141,6 +135,4 @@ Configuração do projeto: `minSdk` 24 e `targetSdk` 37.
 
 O banco de dados local é criado na primeira execução. Se o esquema do banco mudar entre versões do app, desinstale o app do aparelho antes de rodar de novo.
 
-## Autores
 
-<!-- TODO: incluir os nomes de quem desenvolveu o projeto. -->
