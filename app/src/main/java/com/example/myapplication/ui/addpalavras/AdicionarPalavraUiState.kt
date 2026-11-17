@@ -10,7 +10,10 @@ data class AdicionarPalavraUiState(
     val todosOsJogos: List<Jogo> = emptyList(),
     val busca: String = "",
     val novaPalavra: String = "",
-    val palavraValida: Boolean = false
+    val palavraValida: Boolean = false,
+
+    val verificando: Boolean = false,
+    val erro: String? = null
 ) {
     val jogoJaExiste: Boolean
         get() = novaPalavra.isNotBlank() && todosOsJogos.any {

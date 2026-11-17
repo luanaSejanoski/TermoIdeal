@@ -89,6 +89,7 @@ fun AppNavigation(navController: NavHostController) {
 
             composable(Rotas.JOGOS_PASSADOS){
                 TelaJogosPassados(
+                    tipoUsuario = tipoUsuario ?: 1,
                     onJogoClick = { id -> navController.navigate("jogo/$id") }
                 )
             }

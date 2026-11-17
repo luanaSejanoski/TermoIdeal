@@ -21,4 +21,7 @@ interface ProgressoJogoDAO {
 
     @Query("SELECT * FROM ProgressoJogo WHERE usuarioId = :usuarioId")
     fun listar(usuarioId: Int): Flow<List<ProgressoJogo>>
+
+    @Query("SELECT jogoId FROM ProgressoJogo WHERE venceu = 1")
+    fun listarIdsJogosVencidos(): Flow<List<Int>>
 }

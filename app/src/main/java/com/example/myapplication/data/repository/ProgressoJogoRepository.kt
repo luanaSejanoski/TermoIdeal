@@ -23,7 +23,8 @@ class ProgressoJogoRepository(
         progressoJogoDAO.atualizar(progresso)
     }
 
-    fun listarProgressosDoUsuario(usuarioId: Int): Flow<List<ProgressoJogo>>{
-        return progressoJogoDAO.listar(usuarioId)
-    }
+//    fun listarProgressosDoUsuario(usuarioId: Int): Flow<List<ProgressoJogo>>{
+//        return progressoJogoDAO.listar(usuarioId)
+//    }
+    fun listarIdsJogosFinalizados(): Flow<List<Int>> = progressoJogoDAO.listarIdsJogosVencidos()
 }

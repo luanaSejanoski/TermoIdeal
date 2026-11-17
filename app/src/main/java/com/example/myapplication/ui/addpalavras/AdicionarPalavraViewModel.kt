@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.data.local.Jogo
 import com.example.myapplication.data.repository.JogoRepository
+import com.example.myapplication.data.repository.PalavraRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AdicionarPalavraViewModel (
-    private val jogoRepository: JogoRepository
+    private val jogoRepository: JogoRepository,
+    private val palavraRepository: PalavraRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(AdicionarPalavraUiState())
     val uiState: StateFlow<AdicionarPalavraUiState> = _uiState.asStateFlow()
@@ -61,19 +63,35 @@ class AdicionarPalavraViewModel (
     //funcoes referentes a criacao de jogos
     fun aoAlterarNovaPalavra(palavra: String) {
         _uiState.update {
-            it.copy(novaPalavra = palavra, palavraValida = ehPalavraValida(palavra))
+            it.copy(novaPalavra = palavra, palavraValida = ehPalavraValida(palavra), erro = null)
         }
     }
 
     fun aoClicarEmAddPalavra(){
         val state = _uiState.value
-        if(!state.palavraValida) return
+        if(!state.palavraValida || state.verificando) return
 
         viewModelScope.launch {
-            jogoRepository.inserirNovoJogo(Jogo(palavra = state.novaPalavra.uppercase()))
+            _uiState.update { it.copy(verificando = true, erro = null) }
 
-            _uiState.update {
-                it.copy(jogoCriado = true, novaPalavra = "", palavraValida = false)
+            when (palavraRepository.palavraExiste(state.novaPalavra)) {
+                true -> {
+                    jogoRepository.inserirNovoJogo(Jogo(palavra = state.novaPalavra.uppercase()))
+                    _uiState.update {
+                        it.copy(
+                            verificando = false,
+                            jogoCriado = true,
+                            novaPalavra = "",
+                            palavraValida = false
+                        )
+                    }
+                }
+                false -> _uiState.update {
+                    it.copy(verificando = false, erro = "Essa palavra não existe no dicionário!")
+                }
+                null -> _uiState.update {
+                    it.copy(verificando = false, erro = "Não foi possível verificar. Confira a internet!")
+                }
             }
         }
     }
