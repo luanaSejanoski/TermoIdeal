@@ -33,13 +33,13 @@ Aplicativo Android de jogo de palavras inspirado no **Termo**. O jogador tenta d
 
 | Jogo diário | Jogos passados | Ranking |
 | :---: | :---: | :---: |
-| <img width="250" alt="Jogo diário" src="https://github.com/user-attachments/assets/16c26912-2f7e-4d5b-ad4e-1281860e3f28" />| <img width="250" alt="Jogos passados do Jogador" src="" />| <img width="250" alt="Ranking do Jogador" src="https://github.com/user-attachments/assets/cbb551ca-a7f6-47a7-ba44-c0e4b551ca51" /> |
+| <img width="250" alt="Jogo diário" src="https://github.com/user-attachments/assets/16c26912-2f7e-4d5b-ad4e-1281860e3f28" />| <img width="250" alt="Jogos passados do Jogador" src="https://github.com/user-attachments/assets/8faf6acd-3db0-423c-8dc5-be4b947c7e8a" />| <img width="250" alt="Ranking do Jogador" src="https://github.com/user-attachments/assets/cbb551ca-a7f6-47a7-ba44-c0e4b551ca51" /> |
 
 ### Perfil Administrador
 
 | Cadastrar palavras | Jogos passados | Ranking |
 | :---: | :---: | :---: |
-| <img width="250" alt="Cadastrar palavra" src="" /> | <img width="250" alt="Jogos passados do Admin" src="" /> | <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/35847c2f-d326-4dbd-b423-4f23e45bb36e" /> |
+| <img width="250" alt="Cadastrar palavra" src="https://github.com/user-attachments/assets/fe6770f3-e897-43d0-9088-20e2aa0705ae" /> | <img width="250" alt="Jogos passados do Admin" src="" /> | <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/35847c2f-d326-4dbd-b423-4f23e45bb36e" /> |
 
 ## Como o jogo funciona
 
