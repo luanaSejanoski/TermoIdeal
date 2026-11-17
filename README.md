@@ -17,9 +17,7 @@ Aplicativo Android de jogo de palavras inspirado no **Termo**. O jogador tenta d
 
 ## Demonstração
 
-<!-- TODO: colar aqui o link do vídeo de demonstração (YouTube, Google Drive, etc.). -->
-
-📹 **Vídeo de demonstração:** [COLOQUE O LINK AQUI](https://link-do-video)
+📹 **Vídeo de demonstração:** https://drive.google.com/file/d/1pmbeQYR0r7og8A4ssS2Xd2m59jJyw_xp/view?usp=drivesdk
 
 ## Telas
 
@@ -39,7 +37,7 @@ Aplicativo Android de jogo de palavras inspirado no **Termo**. O jogador tenta d
 
 | Cadastrar palavras | Jogos passados | Ranking |
 | :---: | :---: | :---: |
-| <img width="250" alt="Cadastrar palavra" src="https://github.com/user-attachments/assets/fe6770f3-e897-43d0-9088-20e2aa0705ae" /> | <img width="250" alt="Jogos passados do Admin" src="" /> | <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/35847c2f-d326-4dbd-b423-4f23e45bb36e" /> |
+| <img width="250" alt="Cadastrar palavra" src="https://github.com/user-attachments/assets/fe6770f3-e897-43d0-9088-20e2aa0705ae" /> | <img width="250" alt="Jogos passados do Admin" src="https://github.com/user-attachments/assets/65a59364-0508-4864-b8ea-702c5404fd03" /> | <img width="250" alt="Ranking do Admin" src="https://github.com/user-attachments/assets/35847c2f-d326-4dbd-b423-4f23e45bb36e" /> |
 
 ## Como o jogo funciona
 
@@ -65,8 +63,8 @@ O **progresso do jogador é salvo**: ele pode sair do app e continuar de onde pa
 
 | Tela | Descrição |
 | --- | --- |
-| **Cadastrar palavras** | Cria jogos cadastrando palavras e exclui jogos removendo palavras. |
-| **Jogos passados** | Mostra todos os jogos já cadastrados. |
+| **Cadastrar palavras** | Cria jogos cadastrando palavras e pesquisa palavras existentes. |
+| **Jogos passados** | Mostra todos os jogos já cadastrados e exclui jogos. |
 | **Ranking** | Permite acompanhar o progresso dos jogadores. |
 
 ### Perfil Jogador
